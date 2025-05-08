@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Card - Smart Package System</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #180835;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 30px;
+      padding: 10px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      width: 70%;
+      background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+      flex-wrap: wrap;
+    }
+
+    .left-container {
+      background: linear-gradient(to right, #434343, #000000);
+      flex: 1;
+      max-width: 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 430px;
+      padding: 10px;
+      margin: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .right-container {
+      background: linear-gradient(to left, #434343, #000000);
+      flex: 1;
+      max-width: 65%;
+      height: 430px;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 30px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    h2, h3 {
+      font-size: 24px;
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    .gradienttext {
+      background-image: linear-gradient(to right, #ee00ff 0%, #fbff00 100%);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 18px;
+      color: aliceblue;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      color: white;
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    td:first-child {
+      font-weight: bold;
+      width: 30%;
+    }
+
+    .credit {
+      color: #fff;
+      text-align: center;
+      margin-top: 30px;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .credit a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+    }
+
+    @media only screen and (max-width: 860px) {
+      .card {
+        flex-direction: column;
+        height: auto;
+        width: 90%;
+      }
+
+      .left-container, .right-container {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="left-container">
+    <img src="https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358__480.jpg" alt="Profile Image" />
+    <h2 class="gradienttext">Shrikrushn Deore</h2>
+    <p>Web Developer</p>
+  </div>
+
+  <div class="right-container">
+    <h3 class="gradienttext">Profile Details</h3>
+    <table>
+      <tr><td>Name :</td><td>Shrikrushn Deore</td></tr>
+      <tr><td>Age :</td><td>20</td></tr>
+      <tr><td>Mobile :</td><td>+91 XXXXXXXXXX</td></tr>
+      <tr><td>Email :</td><td>Shrikrushn.Deore@12.com</td></tr>
+      <tr><td>Address :</td><td>Pune, 411041</td></tr>
+    </table>
+
+    <div class="credit">
+      Made with <span style="color:tomato; font-size: 20px;">❤</span> by 
+      <a href="https://www.learningrobo.com/" target="_blank">Learning Robo</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simulate profile data stored from login
+  localStorage.setItem('profileName', 'Pushkar Shiv Patel');
+</script>
+
+</body>
+</html>

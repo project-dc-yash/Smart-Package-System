@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera - Smart Package System</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 28px;
+      color: #222;
+      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+
+    .layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+      gap: 30px;
+    }
+
+    .arduino-img, .raspberry-img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      animation: torchlight 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes torchlight {
+      0% { filter: brightness(1) drop-shadow(0 0 10px #fff4cc); }
+      100% { filter: brightness(1.4) drop-shadow(0 0 20px #ffd700); }
+    }
+
+    .camera-box {
+      border: 5px solid #d2691e;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    video, canvas {
+      width: 320px;
+      height: 240px;
+      border-radius: 8px;
+      border: 2px solid #d2691e;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #d2691e;
+      color: white;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #b45215;
+    }
+
+    .token-display {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      padding: 10px 20px;
+      background: #ffe4c4;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Smart Package Storage Management System</h1>
+  <div class="layout">
+    <img src="./img/giphy.gif" alt="Arduino" class="arduino-img">
+
+    <div class="camera-box">
+      <video id="video" autoplay></video>
+      <canvas id="canvas" style="display:none;"></canvas>
+      <button onclick="capturePhoto()">Capture Photo</button>
+      <div class="token-display" id="tokenDisplay" style="display:none;"></div>
+    </div>
+
+    <img src="./img/Raspberry-Pi-3.gif" alt="Raspberry Pi" class="raspberry-img">
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const tokenDisplay = document.getElementById('tokenDisplay');
+
+    const tokens = ["123A", "456B", "789C"];
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        alert('Camera access denied or not available.');
+        console.error(err);
+      });
+
+    function capturePhoto() {
+      const context = canvas.getContext('2d');
+      canvas.style.display = 'block';
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const token = tokens[Math.floor(Math.random() * tokens.length)];
+      tokenDisplay.innerText = `Token Number: ${token}`;
+      tokenDisplay.style.display = 'block';
+    }
+
+    
+  </script>
+</body>
+</html>
